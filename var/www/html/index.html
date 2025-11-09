@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLM Solutions - Consultoria em Cibersegurança</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <a href="#" class="nav-logo">
+                <strong>CLM</strong> Solutions
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#sobre">Sobre Nós</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#recrutamento">Recrutamento</a></li>
+                    <li><a href="#contacto" class="btn btn-outline">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container fade-in-section">
+                <h1>Protegemos o Futuro Digital da Sua Empresa</h1>
+                <p>Consultoria especializada em Cibersegurança, da estratégia à implementação.</p>
+                <a href="#servicos" class="btn btn-primary">Descubra os Nossos Serviços</a>
+            </div>
+        </section>
+
+        <section id="sobre" class="container section-padding fade-in-section">
+            <h2 class="section-title">Sobre a CLM Solutions</h2>
+            <p class="section-subtitle">Somos o seu parceiro estratégico na mitigação de riscos digitais. Com uma equipa de especialistas certificados, a CLM Solutions oferece soluções de cibersegurança de ponta, alinhadas com as necessidades do seu negócio.</p>
+        </section>
+
+        <section id="servicos" class="section-padding bg-light">
+            <div class="container">
+                <h2 class="section-title">Os Nossos Serviços</h2>
+                <div class="servicos-grid">
+                    <div class="servico-card fade-in-section">
+                        <i class="servico-icon">🛡️</i>
+                        <h3>Pentesting & Análise de Vulnerabilidades</h3>
+                        <p>Identificamos e corrigimos falhas de segurança antes que sejam exploradas por atacantes.</p>
+                    </div>
+                    <div class="servico-card fade-in-section">
+                        <i class="servico-icon">📋</i>
+                        <h3>Consultoria GDPR & Compliance</h3>
+                        <p>Garantimos que a sua organização cumpre todas as normativas de proteção de dados.</p>
+                    </div>
+                    <div class="servico-card fade-in-section">
+                        <i class="servico-icon">📡</i>
+                        <h3>SOC as a Service (SOCaaS)</h3>
+                        <p>Monitorização, deteção e resposta a incidentes de segurança 24/7/365.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="recrutamento" class="section-padding">
+            <div class="container">
+                <h2 class="section-title">Junta-te à Nossa Equipa</h2>
+                <p class="section-subtitle">Procuramos os melhores talentos em cibersegurança. Envie a sua candidatura.</p>
+                
+                <form id="form-recrutamento" class="recrutamento-form" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="nome_completo">Nome Completo</label>
+                        <input type="text" id="nome_completo" name="nome_completo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telemovel">Número de Telemóvel</label>
+                        <input type="tel" id="telemovel" name="telemovel" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cv">Upload de CV (PDF, DOC, DOCX - Máx 5MB)</label>
+                        <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="info_adicional">Informação Adicional (Opcional)</label>
+                        <textarea id="info_adicional" name="info_adicional" rows="4"></textarea>
+                    </div>
+                    
+                    <div id="form-mensagem"></div> <button type="submit" class="btn btn-primary">Enviar Candidatura</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 CLM Solutions. Todos os direitos reservados.</p>
+            <p> lamp-clm.duckdns.org | Criado em CentOS10 </p>
+
+            <div class="project-authorship">
+                <p><strong>Autores do projeto:</strong> Manuel Godinho, Luís Vera e Cleber Monteiro (GRSI0325)</p>
+                <p><strong>Curso:</strong> Gestão de Redes e Sistemas Informáticos em ATEC Palmela</p>
+                <p><strong>Formador:</strong> Dário Quental</p>
+                <p><strong>Repositório:</strong> <a href="https://github.com/goddinn/lamp-linux-centos10" target="_blank" rel="noopener noreferrer">github.com/goddinn/lamp-linux-centos10</a></p>
+            </div>
+            </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

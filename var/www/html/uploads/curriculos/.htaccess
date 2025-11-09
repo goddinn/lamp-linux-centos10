@@ -1,0 +1,10 @@
+# /var/www/html/uploads/curriculos/.htaccess
+
+# 1. Impedir a listagem do conteúdo do diretório
+Options -Indexes
+
+# 2. Negar todo o acesso web (HTTP) a este diretório
+# Esta é a medida mais segura.
+# Os ficheiros SÓ serão acessíveis via FTP (para o recrutador)
+# ou pelo sistema de ficheiros (para a aplicação).
+Require all denied

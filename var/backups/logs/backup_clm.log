@@ -1,0 +1,10 @@
+2025-11-04 12:23:49 - --- [INÍCIO] Backup Diário CLM Solutions ---
+2025-11-04 12:23:49 - A fazer backup dos ficheiros web de /var/www/html...
+2025-11-04 12:23:49 - Backup Web concluído com SUCESSO: /var/backups/clm_web/clm_web_20251104_122349.tar.gz
+2025-11-04 12:23:49 - A fazer backup da base de dados 'clm-recrutamento'...
+2025-11-04 12:23:50 - Backup da Base de Dados concluído com SUCESSO: /var/backups/clm_database/clm-recrutamento_20251104_122349.sql.gz
+2025-11-04 12:23:50 - A apagar backups com mais de 7 dias...
+2025-11-04 12:23:50 - Rotação Web concluída.
+2025-11-04 12:23:50 - Rotação da Base de Dados concluída.
+2025-11-04 12:23:50 - --- [FIM] Backup Diário Concluído ---
+
