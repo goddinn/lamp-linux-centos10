@@ -1,0 +1,4 @@
+#alterar linha 3 
+pool time1.google.com iburst
+pool time2.google.com iburst
+pool time3.google.com iburst

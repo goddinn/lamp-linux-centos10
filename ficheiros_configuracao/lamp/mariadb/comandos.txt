@@ -1,0 +1,15 @@
+dnf install mariadb-server -y
+systemctl start mariadb
+systemctl enable mariadb
+systemctl status mariadb
+
+Script de Segurança Inicial
+mysql_secure_installation (1-ENTER 2-y 3-n 4-y 5-y 6-y 7-y)
+
+#Enviar ficheiro de configuração para a BD
+mysql < /var/www/html/sql/schema.sql
+
+#Verificação
+mysql -u clm_webapp -p -D clm-recrutamento
+show tables; #Deverá aparecer a tabela "candidaturas".
+

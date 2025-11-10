@@ -1,0 +1,6 @@
+dnf -y install httpd
+mv /etc/httpd/conf.d/welcome.conf /etc/httpd/conf.d/welcome.conf.org
+dnf install php php-fpm php-mysqlnd php-json -y
+systemctl start php-fpm
+systemctl enable php-fpm
+systemctl restart httpd

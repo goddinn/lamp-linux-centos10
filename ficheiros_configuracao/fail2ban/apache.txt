@@ -1,0 +1,106 @@
+vi /etc/fail2ban/jail.d/apache-auth.conf
+[apache-auth]
+enabled = true
+port = http,https
+logpath = /var/log/httpd/error_log
+bantime = 600
+findtime = 3m
+maxretry = 5
+action = %(action_mw)s
+
+vi /etc/fail2ban/jail.d/apache-badbots.conf
+[apache-badbots]
+enabled = true
+port = http,https
+logpath = /var/log/httpd/access_log
+maxretry = 2
+bantime = 1d
+findtime = 10m
+
+vi /etc/fail2ban/jail.d/apache-noscript.conf
+[apache-noscript]
+enabled = true
+port = http,https
+filter = apache-noscript
+logpath = /var/log/httpd/error_log
+maxretry = 3
+findtime = 5m
+bantime = 1d
+
+vi /etc/fail2ban/jail.d/apache-overflows.conf
+[apache-overflows]
+enabled = true
+port = http,https
+filter = apache-overflows
+logpath = /var/log/httpd/error_log
+maxretry = 2
+findtime = 5m
+bantime = 1d
+
+vi /etc/fail2ban/jail.d/apache-nohome.conf
+[apache-nohome]
+enabled = true
+port = http,https
+filter = apache-nohome
+logpath = /var/log/httpd/error_log
+maxretry = 2
+findtime = 5m
+bantime = 1d
+
+vi /etc/fail2ban/jail.d/apache-botsearch.conf
+[apache-botsearch]
+enabled = true
+port = http,https
+filter = apache-botsearch
+logpath = /var/log/httpd/access_log
+maxretry = 2
+findtime = 10m
+bantime = 2d
+
+vi /etc/fail2ban/jail.d/apache-shellshock.conf
+[apache-shellshock]
+enabled = true
+port = http,https
+filter = apache-shellshock
+logpath = /var/log/httpd/access_log
+maxretry = 1
+findtime = 5m
+bantime = 1w
+
+vi /etc/fail2ban/jail.d/apache-fakegooglebot.conf
+[apache-fakegooglebot]
+enabled = true
+port = http,https
+filter = apache-fakegooglebot
+logpath = /var/log/httpd/access_log
+maxretry = 1
+findtime = 10m
+bantime = 2d
+
+vi /etc/fail2ban/jail.d/php-url-fopen.conf
+[php-url-fopen]
+enabled = true
+port = http,https
+filter = php-url-fopen
+logpath = /var/log/httpd/access_log
+maxretry = 2
+findtime = 5m
+bantime = 1d
+
+vi /etc/fail2ban/jail.d/apache-dos.conf
+[apache-dos]
+enabled = true
+port = http,https
+filter = apache-dos
+logpath = /var/log/httpd/access_log
+maxretry = 300
+findtime = 5m
+bantime = 1h
+
+vi /etc/fail2ban/filter.d/apache-dos.conf
+[Definition]
+failregex = ^<HOST> .*"GET (?!/robots\.txt).*" (401|403|404|503)\s
+ignoreregex =
+
+
+systemctl reload fail2ban

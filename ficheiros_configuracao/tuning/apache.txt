@@ -1,0 +1,42 @@
+# /etc/httpd/conf.d/00-tuning.conf
+
+# 1. KeepAlive (Permite que um cliente faça múltiplos pedidos na mesma ligação)
+KeepAlive On
+MaxKeepAliveRequests 100
+KeepAliveTimeout 5
+
+# 2. Tempo (em segundos) que o servidor espera por pedidos ou envio de dados.
+Timeout 30
+
+# 3. mod_deflate (Comprime ficheiros de texto como HTML, CSS, JS antes de os enviar)
+<IfModule mod_deflate.c>
+    # Ativa a compressão para estes tipos de ficheiros
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript
+    AddOutputFilterByType DEFLATE application/javascript application/x-javascript application/json
+</IfModule>
+
+# /etc/httpd/conf.d/lamp-clm.duckdns.org-ssl.conf
+
+Include /etc/letsencrypt/options-ssl-apache.conf
+
+# /etc/httpd/conf.modules.d/00-mpm.conf
+
+<IfModule mpm_prefork_module>
+#Número de processos-filho criados no arranque
+    StartServers             5
+
+# Processos mínimos inativos à espera de ligações
+    MinSpareServers          5
+
+# Processos máximos inativos à espera de ligações
+    MaxSpareServers         10
+
+# --- O AJUSTE MAIS IMPORTANTE ---
+    # O número MÁXIMO de processos-filho (e, portanto, ligações em simultâneo)
+    # O default (256) é demasiado alto para a maioria dos servidores.
+    MaxRequestWorkers      150  # (MaxClients foi renomeado para MaxRequestWorkers)
+# Número máximo de pedidos que um processo-filho trata antes de ser reciclado
+    # (Isto ajuda a prevenir "memory leaks")
+    MaxConnectionsPerChild   1000
+    MaxConnectionsPerChild   1000
+</IfModule>

@@ -1,0 +1,6 @@
+dnf -y install chrony
+#Alterar etc/chrony.conf
+systemctl enable --now chronyd
+
+#verificar estado
+chronyc sources

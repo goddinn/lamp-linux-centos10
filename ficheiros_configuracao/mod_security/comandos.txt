@@ -1,0 +1,2 @@
+dnf install mod_security -y
+dnf install owasp-modsecurity-crs -y

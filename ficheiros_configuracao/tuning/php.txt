@@ -1,0 +1,13 @@
+#Linha 445
+memory_limit = 256M
+
+#Linha 713
+post_max_size = 25M
+
+#Linha 865
+upload_max_filesize = 20M
+
+#Linha 941
+date.timezone = "Europe/Lisbon"
+
+systemctl restart php-fpm

@@ -1,0 +1,33 @@
+dnf install setroubleshoot-server setroubleshoot-plugins -y
+
+#sea-alert
+
+#Pedir ao sealert para analisar o log de auditoria e mostrar um resumo de todos os problemas de SELinux que encontrou
+sealert -a /var/log/audit/audit.log
+
+#Pedir solução com o ID (UUID) do problema que quer resolver
+sealert -l 8d51a8f6-3d6a-4d33-8b77-a87f7d1b3e9a
+
+#Ler a solução (Exemplo)
+
+SELinux is preventing /usr/sbin/vsftpd from ...
+
+***** Plugin ftp (99.5 confidence) suggests   ******************************
+
+If you want to allow vsftpd to access user home directories
+Then you must run the following command:
+# setsebool -P ftp_home_dir 1
+
+
+#ausearch
+
+# -m AVC: Mensagens do tipo "AVC" (Access Vector Cache, ou seja, um bloqueio do SELinux)
+# -ts recent: Que tenham acontecido nos últimos 10 minutos (timestamp recent).
+#ausearch -m AVC -ts recent (Exemplo)
+
+/*
+time->Mon Nov  3 17:10:00 2025
+type=AVC msg=audit(1667500200.123:456): avc:  denied  { read } for  pid=7890 comm="vsftpd" name="curriculos" dev="sda1" ino=... scontext=... tcontext=... tclass=dir
+*/
+
+#Isto mostra que o comm="vsftpd" teve um acesso { read } negado.

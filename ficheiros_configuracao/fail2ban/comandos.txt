@@ -1,0 +1,18 @@
+#instalacao (com repos)
+
+dnf config-manager --set-enabled crb
+sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm
+dnf -y install fail2ban 
+systemctl enable --now fail2ban
+
+#configuração ssh /etc/fail2ban/jail.d/jail.local
+
+[sshd]
+enabled = true
+port = 14632
+filter = sshd
+logpath = /var/log/secure
+
+fail2ban-client status #verificar status das jails
+fail2ban-client banned #verificar Ip's banidos
+fail2ban-client set sshd unbanip x.y.z.w #desbanir IP's

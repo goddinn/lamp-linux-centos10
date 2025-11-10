@@ -1,0 +1,10 @@
+PermitRootLogin no
+Port 14632
+LoginGraceTime 1m
+Protocol 2
+AllowUsers cleber luis manuel admin
+LOGLEVEL VERBOSE
+PermitEmptyPasswords no
+
+#verificar logs
+tail -f /var/log/secure

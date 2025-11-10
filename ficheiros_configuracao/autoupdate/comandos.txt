@@ -1,0 +1,14 @@
+#/usr/local/bin/auto-update.sh
+
+#!/bin/bash
+echo "------- Atualização iniciada em $(date) -------" >> /var/log/auto-update.log
+dnf -y update >> /var/log/auto-update.log 2>&1
+echo "------- Atualização finalizada em $(date) -------" >> /var/log/auto-update.log
+
+chmod +x /usr/local/bin/auto-update.sh
+crontab -e
+
+#Auto-updates do CentOS
+0 3 * * 1,3,5,7 /usr/local/bin/auto-update.sh
+
+

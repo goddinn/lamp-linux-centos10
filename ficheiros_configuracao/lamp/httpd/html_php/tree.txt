@@ -1,0 +1,17 @@
+/var/www/html/
+├── index.html
+├── css/
+│   └── style.css
+├── js/
+│   └── main.js
+├── php/
+│   ├── config.php
+│   └── processar_candidatura.php
+├── sql/
+│   └── schema.sql
+├── uploads/
+│   └── curriculos/
+│       └── .htaccess  
+└── assets/             
+    └── logo.png
+    └── hero-bg.jpg

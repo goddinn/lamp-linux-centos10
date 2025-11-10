@@ -1,0 +1,5 @@
+#Executar comando 'visudo'
+
+manuel  ALL=(ALL)       ALL
+cleber  ALL=(ALL)       ALL
+luis    ALL=(ALL)       ALL

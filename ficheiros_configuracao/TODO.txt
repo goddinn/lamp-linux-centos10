@@ -1,0 +1,45 @@
+Não esquecer de importar ficheiros de configuração no GitHub
+
+Passos:
+
+Mudar IP para estático
+✅. nmtui
+✅Mudar provider de NTP (caso seja preciso)
+. https://www.server-world.info/en/note?os=CentOS_Stream_10&p=ntp&f=2
+✅Instalar LAMP (server.world) e verificar funcionalidade de tudo
+✅Disponibilizar SSH para Luis e Cleber por IP Publico
+✅Dynamic DNS com DuckDns
+✅Certificação SSL
+ 	. https://www.server-world.info/en/note?os=CentOS_Stream_10&p=ssl&f=2
+
+Segurança:
+
+✅Adicionar Ports á firewall de SSH e HTTP/HTTPS
+✅SELinux em Enforcing
+Fail2ban (✅SSH e ✅HTTP)
+Regras OWASP Core Rule Set (proteção contra SQLi, XSS, etc.)
+✅Certificação
+Backups diários da base de dados e diretórios web (crontab)
+
+Ajustes:
+
+Ativar mod_deflate → compressão de conteúdos
+Ativar KeepAlive → reduzir tempo de conexão
+Otimizar Timeouts e MaxClients
+
+No ficheiro my.cnf, ajustar: 
+
+innodb_buffer_pool_size = 60% da RAM
+innodb_log_file_size = 256M
+max_connections = 100
+query_cache_size = 32M
+
+ 	Editar php.ini:
+date.timezone = Europe/Lisbon
+upload_max_filesize = 20M
+post_max_size = 25M
+memory_limit = 256M
+
+
+Links:
+https://www.server-world.info/en/note?os=CentOS_Stream_10&p=download

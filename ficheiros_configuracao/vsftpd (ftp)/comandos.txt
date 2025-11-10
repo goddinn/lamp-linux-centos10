@@ -1,0 +1,80 @@
+---- Configuração do Servidor FTP ----
+
+# 1. Instalar o VSFTPD (Very Secure FTP Daemon)
+ dnf install vsftpd -y
+
+# 2. Criar o utilizador de recrutamento
+# -m: Cria o diretório home
+# -d: Especifica o diretório home
+# -s /sbin/nologin: Impede o login por SSH (medida de segurança)
+useradd -m -d /var/www/html/uploads/curriculos -s /sbin/nologin recrutador_clm
+
+# 3. Definir uma password segura para este utilizador (passwd: recruta)
+passwd recrutador_clm
+
+# 4. Editar o ficheiro de configuração do VSFTPD
+# Use 'nano' ou 'vi'
+vi /etc/vsftpd/vsftpd.conf
+
+# Assegure-se que estas linhas estão assim (descomente ou adicione):
+anonymous_enable=NO
+local_enable=YES
+write_enable=YES
+
+# --- Configuração do Chroot Jail ---
+# Restringe o utilizador ao seu diretório home
+chroot_local_user=YES
+
+# Permite que o diretório chroot seja 'writable' (necessário)
+allow_writeable_chroot=YES
+
+# (Opcional, mas recomendado) Usar uma lista de utilizadores permitidos
+userlist_enable=YES
+userlist_file=/etc/vsftpd/user_list
+userlist_deny=NO 
+
+# 5. Adicionar o utilizador à lista de permissões
+echo "recrutador_clm" | tee -a /etc/vsftpd/user_list
+
+# 6. Permitir FTP através do Firewall (firewalld)
+ firewall-cmd --permanent --add-service=ftp
+ firewall-cmd --reload
+
+# 7. Configurar permissões do SELinux 
+# Permite ao FTP aceder aos diretórios home dos utilizadores
+ setsebool -P ftp_home_dir on
+# Permite ao FTP acesso total (leitura/escrita)
+ setsebool -P ftpd_full_access on
+
+# 8. Iniciar e Habilitar o serviço VSFTPD
+ systemctl start vsftpd
+ systemctl enable vsftpd
+
+
+---- Comandos de Permissões de Ficheiros ----
+
+# Assumindo que o utilizador do Apache é 'apache' (padrão no CentOS)
+# 1. Criar um grupo comum
+groupadd www-ftp-share
+
+# 2. Adicionar ambos os utilizadores ao grupo
+usermod -a -G www-ftp-share apache
+usermod -a -G www-ftp-share recrutador_clm
+
+# 3. Definir a propriedade do diretório para o user 'apache' e o grupo 'www-ftp-share'
+chown -R apache:www-ftp-share /var/www/html/uploads/curriculos
+
+# 4. Definir permissões: 775 (User: rwx, Group: rwx, Other: r-x)
+# O grupo (PHP e FTP) pode escrever.
+chmod -R 775 /var/www/html/uploads/curriculos
+
+# 5. (Opcional mas recomendado) Definir o bit 'setgid'
+# Isto faz com que novos ficheiros criados no diretório herdem o grupo 'www-ftp-share'
+chmod g+s /var/www/html/uploads/curriculos
+
+# 6. (SELinux) Aplicar o contexto correto para que o Apache possa escrever
+# Define o contexto 'httpd_sys_rw_content_t' (leitura/escrita)
+semanage fcontext -a -t httpd_sys_rw_content_t "/var/www/html/uploads(/.*)?"
+
+# 7. Restaurar os contextos (aplicar a regra acima)
+restorecon -Rv /var/www/html/uploads

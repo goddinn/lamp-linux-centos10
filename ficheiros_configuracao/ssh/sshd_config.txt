@@ -1,0 +1,9 @@
+# /etc/ssh/sshd_config
+
+PermitRootLogin no
+Port 14632
+LoginGraceTime 1m
+Protocol 2
+AllowUsers cleber luis manuel admin
+LOGLEVEL VERBOSE
+PermitEmptyPasswords no

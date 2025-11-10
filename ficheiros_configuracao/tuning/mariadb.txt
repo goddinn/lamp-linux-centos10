@@ -1,0 +1,18 @@
+1. Calcular 60% da RAM (Buffer Pool)
+free -m
+3500*0.6=2100MB RAM
+
+#/etc/my.cnf.d/mariadb-server.cnf
+
+#Alterações ao ficheiro
+# 1. Ajuste para 60% da RAM total
+innodb_buffer_pool_size = 2100M
+# 2. Tamanho do ficheiro de log (como pedido)
+innodb_log_file_size = 256M
+
+# 3. Máximo de conexões (como pedido)
+max_connections = 100
+
+# 4. Desativar o Query Cache (OBRIGATÓRIO - foi removido)
+query_cache_type = 0
+query_cache_size = 0

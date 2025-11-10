@@ -1,0 +1,8 @@
+vi /etc/fail2ban/jail.local
+[DEFAULT]
+ignoreip = 127.0.0.1/8 ::1
+bantime = 1d
+findtime = 5m
+maxretry = 5
+destemail = root@localhost
+sender = root@your-hostname

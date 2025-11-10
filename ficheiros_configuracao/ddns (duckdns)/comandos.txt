@@ -1,0 +1,17 @@
+#www.duckdns.org
+#Apos criado subdomain, seguir passos do website
+
+ps -ef | grep cr[o]n 	#verificar se cron existe
+curl 			#verificar se curl existe
+mkdir duckdns
+cd duckdns
+vi duck.sh
+echo url="[REDACTED]" | curl -k -o ~/duckdns/duck.log -K -
+chmod 700 duck.sh
+crontab -e
+*/5 * * * * ~/duckdns/duck.sh >/dev/null 2>&1
+./duck.sh
+cat duck.log 		#Resultado será OK se estiver tudo funcional
+
+
+---- Só funcionará entrada por SSH pelo domino se PortForwarding estiver ativo ----

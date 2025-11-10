@@ -1,0 +1,41 @@
+dnf -y install epel-release
+dnf -y install certbot python3-certbot-apache mod_ssl
+
+#Por alguma razão, para criar um certificado para o domínio pelo Let's Encrypt, o servidor já deve ter um 'self-created certificate'.
+openssl req -x509 -nodes -days 365 -newkey rsa:2048  -keyout /etc/pki/tls/private/localhost.key  -out /etc/pki/tls/certs/localhost.crt  -subj "/C=PT/ST/L=Lisbon/O=Local/CN=localhost"
+certbot --apache -d lamp-clm.duckdns.org
+
+#Alterar linha 100 em /etc/httpd/conf/httpd.conf
+ServerName www.lamp-clm.duckdns.org
+
+systemctl reload httpd
+systemctl restart httpd
+
+#Certificar que a porta 443 está aberta no router e retirar a de 80
+
+vi /etc/httpd/conf.d/lamp-clm.duckdns.org.conf
+<VirtualHost *:80>
+    ServerName lamp-clm.duckdns.org
+    
+    # Set this to the directory where your website files are
+    DocumentRoot /var/www/html
+    
+    # You can also add other aliases if you have them
+    # ServerAlias www.lamp-clm.duckdns.org
+
+    # Optional: Add logs for this specific site
+    ErrorLog /var/log/httpd/lamp-clm.duckdns.org-error.log
+    CustomLog /var/log/httpd/lamp-clm.duckdns.org-access.log combined
+</VirtualHost>
+
+apachectl configtest
+#Deve aparecer Syntax OK
+
+systemctl reload httpd
+
+#Criar certificado
+certbot --apache -d --redirect lamp-clm.duckdns.org
+
+#Testar com curl
+
+curl -I http://lamp-clm.duckdns.org
