@@ -6,10 +6,11 @@ getenforce
 semanage port -a -t ssh_port_t -p tcp 14632
 
 #firewalld (ssh)
-firewall-cmd --permanent --add-port=14632/tcp
+firewall-cmd --permanent --add-port=22/tcp
 firewall-cmd --reload
 
 #firewalld (http/https)
 
 firewall-cmd --add-service=http
 firewall-cmd --runtime-to-permanent
+
